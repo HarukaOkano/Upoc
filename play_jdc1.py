@@ -8,9 +8,6 @@ from vibe_control import vibe_sound
 
 data = []
 
-Frequencies = []
-Timestamp = []
-
 flag = 0
 
 def getfreq():
@@ -114,21 +111,21 @@ def jdc_exe():
 
 
 if __name__ == "__main__":
-	print("cd")
-	record_audio()
-	print("a")
+	print("recording-start")
+	#record_audio()
+	print("recording-finish")
 	jdc_exe()
-	print("cc")
+	print("jdc-finish")
 	results = getfreq()
 	timestamps = results[0]
 	freqs = results[1]
-	Frequencies = freqs
-	Timestamp = timestamps
-	flag = 1
-	vibe_sound(flag, Frequencies, Timestamp)
-	# 音声再生とグラフのプロット
 	play_sound(freqs)
+	flag = 1
+	print("play-sound_vibe")
+	#vibe_sound()
+	# 音声再生とグラフのプロット
+	#play_sound(freqs)
 	#play_sound(frequencies)
-	plot_data(timestamps, freqs)
+	#plot_data(timestamps, freqs)
 	#plot_data(timestamps, frequencies)
 

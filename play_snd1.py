@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import sounddevice
 import snd_kairo as kairo
 
-RATE=5000       
+RATE=3000       
 bufsize = 128      
 
 #鍵盤のGUI作成
@@ -21,7 +21,6 @@ for i in range(15):
     if i in {0,1,3,4,5,7,8,10,11,12}:
         cv2.rectangle(keyboard, (int(ksx/15*i + ksx/27 ), 0), (int(ksx/15*(i+1) + ksx/33),int(ksy/2)), (0, 0, 0), -1)
 
-cv2.imshow("keyboard", keyboard) 
 
 
 #各種パラメータ用スライダーの設定
@@ -74,11 +73,12 @@ pre_pitch2 = 440
 #keys = np.array([0,2,4,5,7,9,11,12,12])
 #keys2 = np.array([12,14,16,17,19,21,23,24,24])
 keys = np.array([0,1,2,3,4,5,6,7,8,9,10,11,12,12])
+#keys = np.array([12,13,14,15,16,17,18,19,20,21,22,23,24,24])
 keys2 = np.array([12,13,14,15,16,17,18,19,20,21,22,23,24,24])
 #keys2 = np.array([-12,-10,-8,-7,-5,-3,-1,0,2])
 #keys2 = np.array([0,2,4,5,7,9,11,12,14])
 bure = [0.10, 0.30, 0.50, 0.80,1.0,1.3,1.5,1.8,2.0,2.3,2.5,2.8,3.0,3.2]
-burange = 0.05
+burange = 0.025
 bureflag = 0
 bureflag2 = 0
 curbure = 0
@@ -402,7 +402,7 @@ def waveformAndSpectrum():
     plt.title("Waveform")
     plt.plot(t0,outwave)
     plt.xlim([0,pitch * sampleN / RATE])
-    plt.ylim([-1.5, 1.5])
+    plt.ylim([-1.5, 1.5])  
     plt.subplot(2,1,2)
     plt.title("Spectrum")
     plt.yscale("log")

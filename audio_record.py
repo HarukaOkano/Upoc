@@ -13,7 +13,7 @@ form_1 = pyaudio.paInt16 # 16-bit resolution
 chans = 1 # 1 channel
 samp_rate = 44100 # 44.1kHz　サンプリング周波数
 chunk = 512 # 2^12 一度に取得するデータ数
-record_secs = 20 # 録音する秒数
+record_secs = 10 # 録音する秒数
 dev_index = index # デバイス番号
 wav_output_filename = 'record/test.wav' # 出力するファイル
 

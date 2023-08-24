@@ -99,7 +99,7 @@ class vibePattern:
 
 if __name__ == "__main__":
 	test = vibePattern()
-	n = 0
+	n = 23
 	test.set_b_values(n)
 	test.vibe()
 	time.sleep(5)
