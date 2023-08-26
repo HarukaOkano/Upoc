@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import sounddevice
 import snd_kairo as kairo
 
-RATE=3000       
+RATE=5000       
 bufsize = 128      
 
 #鍵盤のGUI作成
@@ -78,7 +78,7 @@ keys2 = np.array([12,13,14,15,16,17,18,19,20,21,22,23,24,24])
 #keys2 = np.array([-12,-10,-8,-7,-5,-3,-1,0,2])
 #keys2 = np.array([0,2,4,5,7,9,11,12,14])
 bure = [0.10, 0.30, 0.50, 0.80,1.0,1.3,1.5,1.8,2.0,2.3,2.5,2.8,3.0,3.2]
-burange = 0.025
+burange = 0.05
 bureflag = 0
 bureflag2 = 0
 curbure = 0
@@ -250,10 +250,10 @@ def synthesize():
         vels = velosity - x * ((sl[2]/1000)**3+0.00001)
         vels[vels<0.0] = 0.0
     velosity = vels[-1]    
-    wave = 0.5 * vels * wave
+    wave = vels * wave
 
     #ローパスフィルター
-    wave = lowpass(wave)
+    #wave = lowpass(wave)
 
     return wave
 
@@ -291,7 +291,7 @@ def synthesize2():
     wave = vels * wave
 
     #ローパスフィルター
-    wave = lowpass(wave)
+    #wave = lowpass(wave)
 
     return wave
 
@@ -346,7 +346,7 @@ def audioplay():
         interleaved = np.column_stack((buf1, buf2)).ravel()
         packed_data = struct.pack("h" * len(interleaved), *interleaved)
         stream.write(packed_data)
-        
+        #stream.write(buf1)
         if playing == 0:
             break
     stream.stop_stream()

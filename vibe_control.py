@@ -11,13 +11,13 @@ data = []
 
 def getfreq():
     #filepath = 'jdcnet/output/pitch_pop1.txt'
-    filepath = 'jdcnet/output/pitch_test.wav.txt'
+    filepath = 'jdcnet/output/pitch_haruvoice1.wav.txt'
     with open(filepath, 'r') as file:
         for line in file:
             line = line.strip()  # 行3先頭と末尾の空白を削除
             if line:  # 空行でない場合のみ処理を行う
                 timestamp, frequency = line.split()  # スペースで行を分割
-                if float(timestamp)*100 % 10 == 0:
+                if float(timestamp)*100 % 5 == 0:
                     data.append((float(timestamp), float(frequency)))
 	# データから時間と周波数のリストを作成
     timestamps, frequencies = zip(*data)
@@ -108,8 +108,8 @@ def play_sound_vibe(vibenum, frequencies, sample_rate=5000):
             v.set_b_values(num-1)
             
         v.vibe()
-        samples = (0.5 * np.sin(2 * np.pi * ((np.arange(sample_rate/(1.5))+phase) * frequency / sample_rate))).astype(np.float32)
-        phase += sample_rate/(2.5)
+        samples = (0.5 * np.sin(2 * np.pi * ((np.arange(sample_rate/(5))+phase) * frequency / sample_rate))).astype(np.float32)
+        phase += sample_rate/(5)
         stream.write(samples)
 
 
